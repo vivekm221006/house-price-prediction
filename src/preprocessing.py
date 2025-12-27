@@ -37,8 +37,14 @@ def handle_missing_values(data):
         categorical_cols = data.select_dtypes(include=['object']).columns
         for col in categorical_cols:
             if data[col].isnull().sum() > 0:
-                data[col].fillna(data[col].mode()[0], inplace=True)
-                print(f"Filled missing values in {col} with mode")
+                mode_values = data[col].mode()
+                if len(mode_values) > 0:
+                    data[col].fillna(mode_values[0], inplace=True)
+                    print(f"Filled missing values in {col} with mode")
+                else:
+                    # If no mode exists (all values are null), fill with a placeholder
+                    data[col].fillna('Unknown', inplace=True)
+                    print(f"Filled missing values in {col} with 'Unknown'")
     
     return data
 

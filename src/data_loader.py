@@ -60,7 +60,7 @@ def load_dataset(random_state=42, use_synthetic=False):
             -0.01 * AveOccup +  # Occupancy effect
             0.02 * Latitude +  # Location effect
             -0.01 * Longitude +  # Location effect
-            np.random.normal(0, 0.7, n_samples)  # Random noise (increased)
+            np.random.normal(0, 0.7, n_samples)  # Random noise for realistic variability
         )
         
         # Clip values to realistic range (in $100,000s)

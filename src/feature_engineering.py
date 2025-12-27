@@ -10,6 +10,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
+# Small constant to prevent division by zero
+EPSILON = 1e-5
+
+
 def create_interaction_features(X):
     """
     Create interaction features between key variables.
@@ -25,15 +29,15 @@ def create_interaction_features(X):
     
     # For California Housing, create meaningful interactions
     if 'AveRooms' in X.columns and 'AveBedrms' in X.columns:
-        X_enhanced['RoomsPerBedroom'] = X['AveRooms'] / (X['AveBedrms'] + 1e-5)
+        X_enhanced['RoomsPerBedroom'] = X['AveRooms'] / (X['AveBedrms'] + EPSILON)
         print("Created feature: RoomsPerBedroom")
     
     if 'AveRooms' in X.columns and 'AveOccup' in X.columns:
-        X_enhanced['RoomsPerPerson'] = X['AveRooms'] / (X['AveOccup'] + 1e-5)
+        X_enhanced['RoomsPerPerson'] = X['AveRooms'] / (X['AveOccup'] + EPSILON)
         print("Created feature: RoomsPerPerson")
     
     if 'Population' in X.columns and 'AveOccup' in X.columns:
-        X_enhanced['HouseholdsPerPopulation'] = 1 / (X['AveOccup'] + 1e-5)
+        X_enhanced['HouseholdsPerPopulation'] = 1 / (X['AveOccup'] + EPSILON)
         print("Created feature: HouseholdsPerPopulation")
     
     print(f"Original features: {X.shape[1]}, Enhanced features: {X_enhanced.shape[1]}")
