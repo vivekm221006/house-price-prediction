@@ -2,20 +2,37 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import time
 import os
 from PIL import Image
 
 # Check and train models if needed
+# Check and train models if needed - IMPROVED VERSION
 if not os.path.exists("outputs/models/random_forest.pkl"):
-    st.info("🔄 Training models for the first time...  This takes about 1-2 minutes.")
-    with st.spinner("Training in progress... "):
+    st.warning("⚠️ Models not found. Training models now...")
+    st.info("🔄 This is a one-time setup and will take about 1-2 minutes.  Please wait...")
+    
+    with st.spinner("Training in progress...  Please don't refresh the page. "):
         import subprocess
-        result = subprocess.run(["python", "app.py"], capture_output=True, text=True)
+        
+        # Run the training script
+        result = subprocess.run(
+            ["python", "app.py"], 
+            capture_output=True, 
+            text=True,
+            cwd=os.getcwd()
+        )
+        
         if result.returncode == 0:
             st.success("✅ Models trained successfully!")
+            st.balloons()
+            st.info("🔄 Reloading app...")
+            time.sleep(2)
             st.rerun()
         else:
-            st.error("⚠️ Please refresh the page to train models")
+            st.error("❌ Model training failed!")
+            st.code(result.stderr)
+            st.stop()
 
 # Page config
 st.set_page_config(
@@ -49,7 +66,17 @@ if st.sidebar.button("🔮 Predict House Price", type="primary", use_container_w
     model_path = "outputs/models/random_forest. pkl"
     
     if not os.path.exists(model_path):
-        st.error("❌ Model not found!  Please run `python app.py` first to train the model.")
+        st.error("⚠️ Models not found.  Training now...  This takes about 1-2 minutes.")
+
+        with st.spinner("🔄 Training models in progress... "):
+            import subprocess
+            result = subprocess.run(["python", "app.py"], capture_output=True, text=True)
+            
+            if result.returncode == 0:
+                st.success("✅ Models trained successfully!  Click the button again to predict.")
+                st.info("👆 Please click 'Predict House Price' button again")
+            else:
+                st. error(f"❌ Training failed.  Error: {result.stderr}")
     else:
         # Load model
         model = joblib.load(model_path)
