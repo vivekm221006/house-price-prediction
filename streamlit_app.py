@@ -6,7 +6,7 @@ import os
 from PIL import Image
 
 # Check and train models if needed
-if not os.path.exists("outputs/models/random_forest. pkl"):
+if not os.path.exists("outputs/models/random_forest.pkl"):
     st.info("🔄 Training models for the first time...  This takes about 1-2 minutes.")
     with st.spinner("Training in progress... "):
         import subprocess
@@ -31,23 +31,24 @@ st.markdown("### Machine Learning Model with 62% Accuracy")
 # Sidebar
 st.sidebar.header("🔧 Input Features")
 
-# Input features
+# Input features (FIRST - before the button)
 med_inc = st.sidebar.slider("Median Income ($10k)", 0.5, 15.0, 3.5, 0.1)
-house_age = st.sidebar.slider("House Age (years)", 1, 52, 15)
+house_age = st.sidebar. slider("House Age (years)", 1, 52, 15)
 ave_rooms = st.sidebar. slider("Average Rooms", 1.0, 20.0, 5.0, 0.5)
-ave_bedrms = st. sidebar.slider("Average Bedrooms", 0.5, 5.0, 1.0, 0.1)
+ave_bedrms = st.sidebar.slider("Average Bedrooms", 0.5, 5.0, 1.0, 0.1)
 population = st.sidebar.slider("Population", 3, 35000, 1500, 100)
-ave_occup = st.sidebar. slider("Average Occupancy", 0.5, 20.0, 3.0, 0.5)
+ave_occup = st.sidebar.slider("Average Occupancy", 0.5, 20.0, 3.0, 0.5)
 latitude = st.sidebar.slider("Latitude", 32.0, 42.0, 37.0, 0.1)
 longitude = st.sidebar.slider("Longitude", -125.0, -114.0, -119.0, 0.1)
 
-# Predict button
-if st.sidebar.button("🔮 Predict Price", type="primary"):
+# Predict button (AFTER the sliders)
+st.sidebar.markdown("---")
+if st.sidebar.button("🔮 Predict House Price", type="primary", use_container_width=True):
     
     # Check if model exists
-    model_path = "outputs/models/random_forest.pkl"
+    model_path = "outputs/models/random_forest. pkl"
     
-    if not os.path. exists(model_path):
+    if not os.path.exists(model_path):
         st.error("❌ Model not found!  Please run `python app.py` first to train the model.")
     else:
         # Load model
