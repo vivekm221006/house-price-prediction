@@ -40,10 +40,10 @@ st.sidebar.markdown("---")
 if st.sidebar.button("🔮 Predict House Price", type="primary", use_container_width=True):
     
     # Load model directly (it should exist from Git LFS)
-    model_path = "outputs/models/random_forest.pkl"
+    model_path = "outputs/models/random_forest. pkl"
     
     if not os.path.exists(model_path):
-        st.error("❌ Model files not loaded. Please refresh the page.")
+        st.error("❌ Model files not loaded.  Please refresh the page.")
         st.stop()
     
     try:
@@ -53,12 +53,12 @@ if st.sidebar.button("🔮 Predict House Price", type="primary", use_container_w
         # Prepare input
         input_data = pd.DataFrame({
             'MedInc': [med_inc],
-            'HouseAge':  [house_age],
+            'HouseAge': [house_age],
             'AveRooms': [ave_rooms],
             'AveBedrms': [ave_bedrms],
             'Population':  [population],
             'AveOccup': [ave_occup],
-            'Latitude':  [latitude],
+            'Latitude': [latitude],
             'Longitude': [longitude]
         })
         
@@ -77,32 +77,32 @@ if st.sidebar.button("🔮 Predict House Price", type="primary", use_container_w
         
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            st.metric(
-                label="💵 Predicted House Value",
-                value=f"${price: ,.0f}",
-                delta=f"Median:  ${prediction:.2f} ($100k)"
-            )
+            st.markdown("### 💵 Predicted House Value")
+            st.markdown(f"<h1 style='text-align: center; color: #2ecc71;'>${int(price):,}</h1>", 
+                       unsafe_allow_html=True)
+            st.markdown(f"<p style='text-align:  center;'>Median House Value:  ${prediction:.2f} (in $100k)</p>",
+                       unsafe_allow_html=True)
+        
         # Show input summary
         st.markdown("---")
         st.subheader("📋 Input Summary")
         col1, col2, col3, col4 = st.columns(4)
         with col1:
-            st.metric("Median Income", f"${med_inc * 10}k")
-            st.metric("House Age", f"{house_age} years")
+            st.metric("Median Income", f"${int(med_inc * 10)}k")
+            st.metric("House Age", f"{int(house_age)} years")
         with col2:
             st. metric("Avg Rooms", f"{ave_rooms:.1f}")
-            st.metric("Avg Bedrooms", f"{ave_bedrms:. 1f}")
+            st.metric("Avg Bedrooms", f"{ave_bedrms:.1f}")
         with col3:
-            st.metric("Population", f"{population:,}")
+            st.metric("Population", f"{int(population):,}")
             st.metric("Avg Occupancy", f"{ave_occup:.1f}")
         with col4:
-            st.metric("Latitude", f"{latitude:. 1f}°")
+            st. metric("Latitude", f"{latitude:.1f}°")
             st.metric("Longitude", f"{longitude:.1f}°")
     
     except Exception as e: 
         st.error(f"❌ Error during prediction: {str(e)}")
         st.info("Please try refreshing the page or contact support.")
-
 # Main content
 st.markdown("---")
 
