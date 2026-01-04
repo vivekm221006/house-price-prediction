@@ -5,6 +5,19 @@ import joblib
 import os
 from PIL import Image
 
+st.write("DEBUG: Checking for model files...")
+st.write(f"Current directory: {os.getcwd()}")
+st.write(f"Files in current dir: {os.listdir('.')}")
+
+if os.path.exists("outputs"):
+    st.write(f"Files in outputs:  {os.listdir('outputs')}")
+    if os.path.exists("outputs/models"):
+        st.write(f"Files in outputs/models: {os.listdir('outputs/models')}")
+    else:
+        st.error("outputs/models directory doesn't exist!")
+else:
+    st.error("outputs directory doesn't exist!")
+
 # Simple check - models should exist from Git LFS
 if not os.path. exists("outputs/models/random_forest.pkl"):
     st.error("❌ Models not found.  The app is loading model files from GitHub LFS. Please refresh the page in a few seconds.")
