@@ -72,15 +72,16 @@ if st.sidebar.button("🔮 Predict House Price", type="primary", use_container_w
         price = prediction * 100000  # Convert to actual price
         
         # Display result
-                # Display result
         st.markdown("---")
+        st.success("✅ Prediction Complete!")
+        
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            st.markdown("### 💵 Predicted House Value")
-            st.markdown(f"<h1 style='text-align: center; color: #2ecc71;'>${price:,. 0f}</h1>", 
-                       unsafe_allow_html=True)
-            st.markdown(f"<p style='text-align: center;'>Median House Value: ${prediction:.2f} (in $100k)</p>",
-                       unsafe_allow_html=True)
+            st.metric(
+                label="💵 Predicted House Value",
+                value=f"${price: ,.0f}",
+                delta=f"Median:  ${prediction:.2f} ($100k)"
+            )
         # Show input summary
         st.markdown("---")
         st.subheader("📋 Input Summary")
