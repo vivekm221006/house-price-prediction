@@ -4,6 +4,9 @@ import numpy as np
 import joblib
 import os
 
+# IMPORTANT: use same feature engineering as training
+from src.feature_engineering import create_interaction_features
+
 # Page config
 st.set_page_config(
     page_title="House Price Predictor",
@@ -36,9 +39,10 @@ if st.sidebar.button("🔮 Predict House Price", use_container_width=True):
         st.error("❌ Model not found. Train the model first.")
         st.stop()
 
+    # Load trained model
     model = joblib.load(model_path)
 
-    # Prepare input
+    # 1️⃣ Raw input features (EXACTLY like training)
     input_df = pd.DataFrame({
         "MedInc": [med_inc],
         "HouseAge": [house_age],
@@ -50,11 +54,13 @@ if st.sidebar.button("🔮 Predict House Price", use_container_width=True):
         "Longitude": [longitude],
     })
 
-    input_df["RoomsPerBedroom"] = input_df["AveRooms"] / (input_df["AveBedrms"] + 0.01)
-    input_df["RoomsPerPerson"] = input_df["AveRooms"] / (input_df["AveOccup"] + 0.01)
-    input_df["HouseholdsPerPopulation"] = input_df["AveOccup"] / (input_df["Population"] + 0.01)
+    # 2️⃣ Apply SAME feature engineering as training
+    input_df = create_interaction_features(input_df)
 
-    # 📈 CONFIDENCE INTERVALS
+    # 3️⃣ Enforce SAME feature order as model was trained on
+    input_df = input_df[model.feature_names_in_]
+
+    # 📈 Confidence Intervals using tree predictions
     tree_preds = np.array([
         tree.predict(input_df)[0]
         for tree in model.estimators_
