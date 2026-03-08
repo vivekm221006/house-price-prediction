@@ -1,15 +1,18 @@
-# House Price Prediction
+# House Price Prediction & Carbon Footprint Analyzer
 
-An end-to-end machine learning regression project to predict house prices from structured housing data.
+An end-to-end machine learning project featuring house price prediction and an AI-based carbon footprint analyzer for organizations.
 
 ## Project Overview
 
-This project demonstrates a complete machine learning pipeline for predicting house prices using the California Housing dataset. It includes data preprocessing, feature engineering, multiple regression models, comprehensive evaluation, and insightful visualizations.
+This project demonstrates complete machine learning pipelines including:
+1. **House Price Prediction** using the California Housing dataset with data preprocessing, feature engineering, multiple regression models, and comprehensive evaluation.
+2. **AI-Based Carbon Footprint Analyzer** that helps organizations measure, analyze, and reduce their carbon emissions using ML-powered classification and recommendations.
 
 WEBSITE LINK: https://house-price-prediction-v9tf6xoigyg2y2qfxekkwh.streamlit.app/ (TRY NOW)
 
 ## Features
 
+### 🏠 House Price Prediction
 - **Data Loading**: Loads the California Housing dataset (Boston Housing is deprecated)
 - **Data Preprocessing**:
   - Handle missing values
@@ -38,6 +41,23 @@ WEBSITE LINK: https://house-price-prediction-v9tf6xoigyg2y2qfxekkwh.streamlit.ap
   - Residual plots
   - Model comparison
 
+### 🌍 AI-Based Carbon Footprint Analyzer
+- **Emission Categories**:
+  - ⚡ Electricity consumption
+  - ✈️ Business travel (air, car, train)
+  - 🖥️ Data centers & cloud usage
+  - ⛽ Fuel consumption (diesel, gasoline)
+  - 🏢 Office operations (employees, waste)
+- **AI-Powered Analysis**:
+  - Random Forest classifier for emission tier classification (Low/Moderate/High/Very High)
+  - ML-based prediction of achievable emission reduction percentage
+  - Prioritized recommendations based on emission profile
+- **Interactive Dashboard**:
+  - Streamlit UI with real-time emission calculations
+  - Pie chart and bar chart visualizations
+  - Detailed breakdown table with category shares
+  - Emission factors reference
+
 ## Project Structure
 
 ```
@@ -65,8 +85,13 @@ house-price-prediction/
 │   ├── feature_engineering.py     # Feature engineering module
 │   ├── model_training.py          # Model training module
 │   ├── model_evaluation.py        # Model evaluation module
-│   └── visualization.py           # Visualization module
-├── main.py                        # Main pipeline script
+│   ├── visualization.py           # Visualization module
+│   └── carbon_footprint.py        # Carbon footprint analysis module
+├── tests/                         # Test suite
+│   └── test_carbon_footprint.py   # Carbon footprint tests
+├── app.py                         # House price prediction pipeline
+├── streamlit_app.py               # House price Streamlit app
+├── carbon_analyzer_app.py         # Carbon footprint Streamlit app
 ├── requirements.txt               # Python dependencies
 └── README.md                      # Project documentation
 ```
@@ -80,6 +105,7 @@ house-price-prediction/
   - Scikit-learn - Machine learning
   - Matplotlib - Plotting
   - Seaborn - Statistical visualizations
+  - Streamlit - Interactive web applications
 
 ## Installation
 
@@ -96,10 +122,12 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the complete pipeline:
+### House Price Prediction Pipeline
+
+Run the complete ML pipeline:
 
 ```bash
-python main.py
+python app.py
 ```
 
 This will:
@@ -110,6 +138,31 @@ This will:
 5. Evaluate model performance
 6. Generate visualizations
 7. Save all outputs to the `outputs/` directory
+
+### House Price Streamlit App
+
+```bash
+streamlit run streamlit_app.py
+```
+
+### Carbon Footprint Analyzer
+
+```bash
+streamlit run carbon_analyzer_app.py
+```
+
+This will launch an interactive dashboard where you can:
+1. Enter your organization's data (electricity, travel, servers, fuel, employees)
+2. Get AI-powered emission analysis with tier classification
+3. View emission breakdown charts and tables
+4. Receive prioritized reduction recommendations
+5. See estimated reduction potential
+
+### Running Tests
+
+```bash
+python -m pytest tests/ -v
+```
 
 ## Outputs
 
@@ -131,6 +184,23 @@ The pipeline trains and compares four regression models:
 
 All models are evaluated using MAE, MSE, RMSE, and R² Score on both training and testing sets.
 
+## Carbon Footprint Emission Factors
+
+The analyzer uses internationally recognized emission factors:
+
+| Source | Factor | Unit |
+|--------|--------|------|
+| Electricity | 0.42 | kg CO₂/kWh |
+| Air Travel | 0.255 | kg CO₂/passenger-km |
+| Car Travel | 0.21 | kg CO₂/km |
+| Train Travel | 0.041 | kg CO₂/passenger-km |
+| Servers | 500 | kg CO₂/server/year |
+| Cloud Spend | 0.6 | kg CO₂/USD/month |
+| Diesel | 2.68 | kg CO₂/liter |
+| Gasoline | 2.31 | kg CO₂/liter |
+| Office (per employee) | 1,200 | kg CO₂/year |
+| Waste | 0.5 | kg CO₂/kg |
+
 ## Key Design Principles
 
 - **Modular Code**: Each component (data loading, preprocessing, training, etc.) is in its own module
@@ -138,6 +208,7 @@ All models are evaluated using MAE, MSE, RMSE, and R² Score on both training an
 - **Documentation**: Comprehensive docstrings and comments
 - **Clean ML Pipeline**: Follows best practices for ML project structure
 - **Reusability**: Functions designed to be reusable and extensible
+- **Testing**: Comprehensive test suite for carbon footprint calculations
 
 ## Dataset Information
 
@@ -166,3 +237,4 @@ Vivek M
 
 - California Housing dataset from Scikit-learn
 - Inspired by real-world regression problems in data science
+- Emission factors based on EPA, DEFRA, and IEA standards
