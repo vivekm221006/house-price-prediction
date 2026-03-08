@@ -1,182 +1,165 @@
-House Price Prediction
+# 🏠 House Price Prediction
 
-An end-to-end machine learning project that predicts house prices using the California Housing Dataset.
-The project demonstrates a complete ML pipeline including data preprocessing, feature engineering, model training, evaluation, and visualization, along with an interactive Streamlit web application.
+An end-to-end Machine Learning project that predicts house prices using the **California Housing Dataset**.  
+The project demonstrates a complete ML pipeline including **data preprocessing, feature engineering, model training, evaluation, visualization, and deployment using Streamlit**.
 
-🔗 Live Website:
+🔗 **Live Website:**  
 https://house-price-prediction-v9tf6xoigyg2y2qfxekkwh.streamlit.app/
 
-Project Overview
+---
 
-This project demonstrates a full machine learning workflow:
+# 📌 Project Overview
 
-Data loading and exploration
+This project demonstrates a full **Machine Learning workflow**:
 
-Data preprocessing and cleaning
+- Data loading and exploration
+- Data preprocessing and cleaning
+- Feature engineering
+- Training multiple regression models
+- Model evaluation using multiple metrics
+- Data visualization
+- Deployment using **Streamlit Web App**
 
-Feature engineering
+The goal is to predict **median house prices** based on housing features and geographic information.
 
-Training multiple regression models
+---
 
-Model evaluation using multiple metrics
+# 🚀 Features
 
-Data visualization
+## 🏡 House Price Prediction
 
-Deployment using Streamlit
+### Data Loading
+Loads the **California Housing Dataset** provided by Scikit-learn.
 
-The goal is to predict median house values based on housing and geographical features.
+### Data Preprocessing
+- Handle missing values
+- Encode categorical features
+- Scale numerical features
 
-Features
-🏠 House Price Prediction
-Data Loading
+### Feature Engineering
+- Create interaction features
+- Feature selection using univariate methods
+- Feature importance analysis
 
-Loads the California Housing Dataset provided by Scikit-learn.
-
-Data Preprocessing
-
-Handle missing values
-
-Encode categorical features
-
-Scale numerical features
-
-Feature Engineering
-
-Create interaction features
-
-Feature selection using univariate methods
-
-Feature importance analysis
-
-Model Training
-
+### Model Training
 Multiple regression models are trained and compared:
 
-Linear Regression
+- Linear Regression
+- Ridge Regression
+- Lasso Regression
+- Random Forest Regressor
 
-Ridge Regression
-
-Lasso Regression
-
-Random Forest Regressor
-
-Model Evaluation
-
+### Model Evaluation
 Models are evaluated using:
 
-Mean Absolute Error (MAE)
+- Mean Absolute Error (MAE)
+- Mean Squared Error (MSE)
+- Root Mean Squared Error (RMSE)
+- R² Score
 
-Mean Squared Error (MSE)
-
-Root Mean Squared Error (RMSE)
-
-R² Score
-
-Visualizations
+### Data Visualizations
 
 The project generates several visualizations:
 
-Correlation heatmap
+- Correlation heatmap
+- Feature distributions
+- Feature vs price relationships
+- Feature importance
+- Actual vs predicted prices
+- Residual plots
+- Model comparison charts
 
-Feature distributions
+---
 
-Feature vs price relationships
-
-Feature importance
-
-Actual vs predicted prices
-
-Residual plots
-
-Model comparison charts
-
-Project Structure
+# 📂 Project Structure
 house-price-prediction/
 │
-├── data/                          # Dataset directory
-│   └── housing_data_raw.csv
+├── data/
+│ └── housing_data_raw.csv
 │
 ├── outputs/
-│   ├── models/                    # Saved trained models
-│   │   ├── linear_regression.pkl
-│   │   ├── ridge_regression.pkl
-│   │   ├── lasso_regression.pkl
-│   │   └── random_forest.pkl
-│   │
-│   ├── plots/                     # Generated visualizations
-│   │   ├── correlation_heatmap.png
-│   │   ├── feature_distributions.png
-│   │   ├── feature_vs_target.png
-│   │   ├── feature_importance.png
-│   │   ├── actual_vs_predicted.png
-│   │   ├── residuals.png
-│   │   └── model_comparison.png
-│   │
-│   └── model_metrics.csv
+│ ├── models/
+│ │ ├── linear_regression.pkl
+│ │ ├── ridge_regression.pkl
+│ │ ├── lasso_regression.pkl
+│ │ └── random_forest.pkl
+│ │
+│ ├── plots/
+│ │ ├── correlation_heatmap.png
+│ │ ├── feature_distributions.png
+│ │ ├── feature_vs_target.png
+│ │ ├── feature_importance.png
+│ │ ├── actual_vs_predicted.png
+│ │ ├── residuals.png
+│ │ └── model_comparison.png
+│ │
+│ └── model_metrics.csv
 │
-├── src/                           # Source code
-│   ├── data_loader.py
-│   ├── preprocessing.py
-│   ├── feature_engineering.py
-│   ├── model_training.py
-│   ├── model_evaluation.py
-│   └── visualization.py
+├── src/
+│ ├── data_loader.py
+│ ├── preprocessing.py
+│ ├── feature_engineering.py
+│ ├── model_training.py
+│ ├── model_evaluation.py
+│ └── visualization.py
 │
-├── app.py                         # Main ML pipeline
-├── streamlit_app.py               # Streamlit web application
-├── requirements.txt               # Dependencies
+├── app.py
+├── streamlit_app.py
+├── requirements.txt
 └── README.md
-Tech Stack
-Programming Language
 
-Python 3.7+
 
-Libraries
 
-NumPy – Numerical computing
+---
 
-Pandas – Data manipulation and analysis
+# 🛠 Tech Stack
 
-Scikit-learn – Machine learning models
+### Programming Language
+- Python 3.7+
 
-Matplotlib – Data visualization
+### Libraries Used
 
-Seaborn – Statistical plots
+- **NumPy** – Numerical computing  
+- **Pandas** – Data analysis and manipulation  
+- **Scikit-learn** – Machine learning models  
+- **Matplotlib** – Data visualization  
+- **Seaborn** – Statistical visualization  
+- **Streamlit** – Interactive web application  
 
-Streamlit – Interactive web application
+---
 
-Installation
-1. Clone the Repository
+# ⚙️ Installation
+
+### 1️⃣ Clone the Repository
+
+```bash
 git clone https://github.com/vivekm221006/house-price-prediction.git
 cd house-price-prediction
-2. Install Dependencies
+
+2️⃣ Install Dependencies
+
 pip install -r requirements.txt
-Usage
-Run the ML Pipeline
+
+▶️ Usage
+Run the Machine Learning Pipeline
 python app.py
 
 This will:
-
-Load the California Housing dataset
-
-Perform data preprocessing and cleaning
-
-Create engineered features
-
-Train multiple regression models
-
-Evaluate model performance
-
-Generate visualizations
-
-Save outputs to the outputs/ directory
+1) Load the California Housing dataset
+2) Perform data preprocessing
+3) Generate engineered features
+4) Train multiple regression models
+5) Evaluate model performance
+6) Generate visualizations
+7) Save outputs to the outputs/ directory
 
 Run the Streamlit Web Application
 streamlit run streamlit_app.py
 
-This launches an interactive dashboard where users can enter housing parameters and get real-time price predictions.
 
-Outputs
+This launches an interactive web application where users can input housing features and get real-time house price predictions.
+
+📊 Outputs:
 
 After running the pipeline you will get:
 
@@ -188,7 +171,7 @@ Evaluation Metrics
 outputs/model_metrics.csv
 Visualizations
 outputs/plots/*.png
-Model Performance
+📈 Model Performance
 
 The pipeline compares four regression models:
 
@@ -198,41 +181,41 @@ Ridge Regression	Linear regression with L2 regularization
 Lasso Regression	Linear regression with L1 regularization
 Random Forest	Ensemble tree-based regression model
 
-Each model is evaluated using MAE, MSE, RMSE, and R² Score on training and testing datasets.
+Each model is evaluated using MAE, MSE, RMSE, and R² Score.
 
-Dataset Information
+📊 Dataset Information
 
 The project uses the California Housing Dataset.
 
 Total Samples: 20,640
-Features: 8 numerical features
+Total Features: 8
 
 Feature	Description
 MedInc	Median income in block group
 HouseAge	Median house age
 AveRooms	Average number of rooms
-AveBedrms	Average bedrooms
+AveBedrms	Average number of bedrooms
 Population	Block group population
 AveOccup	Average household members
 Latitude	Block latitude
 Longitude	Block longitude
 
-Target Variable
 
+Target Variable
 MedHouseVal
 
 Median house value in $100,000 units.
 
-License
+📜 License
 
 This project is licensed under the MIT License.
 
-Author
+👨‍💻 Author
 
 Vivek M
 
-Acknowledgments
+🙏 Acknowledgments
 
-California Housing dataset from Scikit-learn
+California Housing Dataset from Scikit-learn
 
 Inspired by real-world housing price prediction problems in data science
