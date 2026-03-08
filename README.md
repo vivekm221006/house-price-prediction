@@ -1,76 +1,109 @@
-# House Price Prediction & Carbon Footprint Analyzer
+House Price Prediction
 
-An end-to-end machine learning project featuring house price prediction and an AI-based carbon footprint analyzer for organizations.
+An end-to-end machine learning project that predicts house prices using the California Housing Dataset.
+The project demonstrates a complete ML pipeline including data preprocessing, feature engineering, model training, evaluation, and visualization, along with an interactive Streamlit web application.
 
-## Project Overview
+🔗 Live Website:
+https://house-price-prediction-v9tf6xoigyg2y2qfxekkwh.streamlit.app/
 
-This project demonstrates complete machine learning pipelines including:
-1. **House Price Prediction** using the California Housing dataset with data preprocessing, feature engineering, multiple regression models, and comprehensive evaluation.
-2. **AI-Based Carbon Footprint Analyzer** that helps organizations measure, analyze, and reduce their carbon emissions using ML-powered classification and recommendations.
+Project Overview
 
-WEBSITE LINK: https://house-price-prediction-v9tf6xoigyg2y2qfxekkwh.streamlit.app/ (TRY NOW)
+This project demonstrates a full machine learning workflow:
 
-## Features
+Data loading and exploration
 
-### 🏠 House Price Prediction
-- **Data Loading**: Loads the California Housing dataset (Boston Housing is deprecated)
-- **Data Preprocessing**:
-  - Handle missing values
-  - Encode categorical features
-  - Scale numerical features
-- **Feature Engineering**:
-  - Create interaction features
-  - Feature selection using univariate methods
-  - Feature importance analysis
-- **Model Training**: Multiple regression models:
-  - Linear Regression
-  - Ridge Regression
-  - Lasso Regression
-  - Random Forest Regressor
-- **Model Evaluation**: Comprehensive metrics:
-  - Mean Absolute Error (MAE)
-  - Mean Squared Error (MSE)
-  - Root Mean Squared Error (RMSE)
-  - R² Score
-- **Visualizations**:
-  - Correlation heatmap
-  - Feature distributions
-  - Feature vs price relationships
-  - Feature importance
-  - Actual vs predicted prices
-  - Residual plots
-  - Model comparison
+Data preprocessing and cleaning
 
-### 🌍 AI-Based Carbon Footprint Analyzer
-- **Emission Categories**:
-  - ⚡ Electricity consumption
-  - ✈️ Business travel (air, car, train)
-  - 🖥️ Data centers & cloud usage
-  - ⛽ Fuel consumption (diesel, gasoline)
-  - 🏢 Office operations (employees, waste)
-- **AI-Powered Analysis**:
-  - Random Forest classifier for emission tier classification (Low/Moderate/High/Very High)
-  - ML-based prediction of achievable emission reduction percentage
-  - Prioritized recommendations based on emission profile
-- **Interactive Dashboard**:
-  - Streamlit UI with real-time emission calculations
-  - Pie chart and bar chart visualizations
-  - Detailed breakdown table with category shares
-  - Emission factors reference
+Feature engineering
 
-## Project Structure
+Training multiple regression models
 
-```
+Model evaluation using multiple metrics
+
+Data visualization
+
+Deployment using Streamlit
+
+The goal is to predict median house values based on housing and geographical features.
+
+Features
+🏠 House Price Prediction
+Data Loading
+
+Loads the California Housing Dataset provided by Scikit-learn.
+
+Data Preprocessing
+
+Handle missing values
+
+Encode categorical features
+
+Scale numerical features
+
+Feature Engineering
+
+Create interaction features
+
+Feature selection using univariate methods
+
+Feature importance analysis
+
+Model Training
+
+Multiple regression models are trained and compared:
+
+Linear Regression
+
+Ridge Regression
+
+Lasso Regression
+
+Random Forest Regressor
+
+Model Evaluation
+
+Models are evaluated using:
+
+Mean Absolute Error (MAE)
+
+Mean Squared Error (MSE)
+
+Root Mean Squared Error (RMSE)
+
+R² Score
+
+Visualizations
+
+The project generates several visualizations:
+
+Correlation heatmap
+
+Feature distributions
+
+Feature vs price relationships
+
+Feature importance
+
+Actual vs predicted prices
+
+Residual plots
+
+Model comparison charts
+
+Project Structure
 house-price-prediction/
-├── data/                          # Data directory
-│   └── housing_data_raw.csv       # Raw dataset
-├── outputs/                       # Output directory
-│   ├── models/                    # Trained models
+│
+├── data/                          # Dataset directory
+│   └── housing_data_raw.csv
+│
+├── outputs/
+│   ├── models/                    # Saved trained models
 │   │   ├── linear_regression.pkl
 │   │   ├── ridge_regression.pkl
 │   │   ├── lasso_regression.pkl
 │   │   └── random_forest.pkl
-│   ├── plots/                     # Visualizations
+│   │
+│   ├── plots/                     # Generated visualizations
 │   │   ├── correlation_heatmap.png
 │   │   ├── feature_distributions.png
 │   │   ├── feature_vs_target.png
@@ -78,163 +111,128 @@ house-price-prediction/
 │   │   ├── actual_vs_predicted.png
 │   │   ├── residuals.png
 │   │   └── model_comparison.png
-│   └── model_metrics.csv          # Evaluation metrics
+│   │
+│   └── model_metrics.csv
+│
 ├── src/                           # Source code
-│   ├── data_loader.py             # Data loading module
-│   ├── preprocessing.py           # Data preprocessing module
-│   ├── feature_engineering.py     # Feature engineering module
-│   ├── model_training.py          # Model training module
-│   ├── model_evaluation.py        # Model evaluation module
-│   ├── visualization.py           # Visualization module
-│   └── carbon_footprint.py        # Carbon footprint analysis module
-├── tests/                         # Test suite
-│   └── test_carbon_footprint.py   # Carbon footprint tests
-├── app.py                         # House price prediction pipeline
-├── streamlit_app.py               # House price Streamlit app
-├── carbon_analyzer_app.py         # Carbon footprint Streamlit app
-├── requirements.txt               # Python dependencies
-└── README.md                      # Project documentation
-```
+│   ├── data_loader.py
+│   ├── preprocessing.py
+│   ├── feature_engineering.py
+│   ├── model_training.py
+│   ├── model_evaluation.py
+│   └── visualization.py
+│
+├── app.py                         # Main ML pipeline
+├── streamlit_app.py               # Streamlit web application
+├── requirements.txt               # Dependencies
+└── README.md
+Tech Stack
+Programming Language
 
-## Tech Stack
+Python 3.7+
 
-- **Python 3.7+**
-- **Libraries**:
-  - NumPy - Numerical computing
-  - Pandas - Data manipulation
-  - Scikit-learn - Machine learning
-  - Matplotlib - Plotting
-  - Seaborn - Statistical visualizations
-  - Streamlit - Interactive web applications
+Libraries
 
-## Installation
+NumPy – Numerical computing
 
-1. Clone the repository:
-```bash
+Pandas – Data manipulation and analysis
+
+Scikit-learn – Machine learning models
+
+Matplotlib – Data visualization
+
+Seaborn – Statistical plots
+
+Streamlit – Interactive web application
+
+Installation
+1. Clone the Repository
 git clone https://github.com/vivekm221006/house-price-prediction.git
 cd house-price-prediction
-```
-
-2. Install dependencies:
-```bash
+2. Install Dependencies
 pip install -r requirements.txt
-```
-
-## Usage
-
-### House Price Prediction Pipeline
-
-Run the complete ML pipeline:
-
-```bash
+Usage
+Run the ML Pipeline
 python app.py
-```
 
 This will:
-1. Load the California Housing dataset
-2. Perform data preprocessing and cleaning
-3. Create engineered features
-4. Train all regression models
-5. Evaluate model performance
-6. Generate visualizations
-7. Save all outputs to the `outputs/` directory
 
-### House Price Streamlit App
+Load the California Housing dataset
 
-```bash
+Perform data preprocessing and cleaning
+
+Create engineered features
+
+Train multiple regression models
+
+Evaluate model performance
+
+Generate visualizations
+
+Save outputs to the outputs/ directory
+
+Run the Streamlit Web Application
 streamlit run streamlit_app.py
-```
 
-### Carbon Footprint Analyzer
+This launches an interactive dashboard where users can enter housing parameters and get real-time price predictions.
 
-```bash
-streamlit run carbon_analyzer_app.py
-```
+Outputs
 
-This will launch an interactive dashboard where you can:
-1. Enter your organization's data (electricity, travel, servers, fuel, employees)
-2. Get AI-powered emission analysis with tier classification
-3. View emission breakdown charts and tables
-4. Receive prioritized reduction recommendations
-5. See estimated reduction potential
+After running the pipeline you will get:
 
-### Running Tests
+Dataset
+data/housing_data_raw.csv
+Trained Models
+outputs/models/*.pkl
+Evaluation Metrics
+outputs/model_metrics.csv
+Visualizations
+outputs/plots/*.png
+Model Performance
 
-```bash
-python -m pytest tests/ -v
-```
+The pipeline compares four regression models:
 
-## Outputs
+Model	Description
+Linear Regression	Baseline linear regression model
+Ridge Regression	Linear regression with L2 regularization
+Lasso Regression	Linear regression with L1 regularization
+Random Forest	Ensemble tree-based regression model
 
-After running the pipeline, you'll find:
+Each model is evaluated using MAE, MSE, RMSE, and R² Score on training and testing datasets.
 
-1. **Data**: `data/housing_data_raw.csv` - Raw dataset
-2. **Models**: `outputs/models/*.pkl` - Trained models (saved as pickle files)
-3. **Metrics**: `outputs/model_metrics.csv` - Performance metrics for all models
-4. **Visualizations**: `outputs/plots/*.png` - All generated plots
+Dataset Information
 
-## Model Performance
+The project uses the California Housing Dataset.
 
-The pipeline trains and compares four regression models:
+Total Samples: 20,640
+Features: 8 numerical features
 
-- **Linear Regression**: Baseline linear model
-- **Ridge Regression**: Linear model with L2 regularization
-- **Lasso Regression**: Linear model with L1 regularization
-- **Random Forest**: Ensemble tree-based model
+Feature	Description
+MedInc	Median income in block group
+HouseAge	Median house age
+AveRooms	Average number of rooms
+AveBedrms	Average bedrooms
+Population	Block group population
+AveOccup	Average household members
+Latitude	Block latitude
+Longitude	Block longitude
 
-All models are evaluated using MAE, MSE, RMSE, and R² Score on both training and testing sets.
+Target Variable
 
-## Carbon Footprint Emission Factors
+MedHouseVal
 
-The analyzer uses internationally recognized emission factors:
+Median house value in $100,000 units.
 
-| Source | Factor | Unit |
-|--------|--------|------|
-| Electricity | 0.42 | kg CO₂/kWh |
-| Air Travel | 0.255 | kg CO₂/passenger-km |
-| Car Travel | 0.21 | kg CO₂/km |
-| Train Travel | 0.041 | kg CO₂/passenger-km |
-| Servers | 500 | kg CO₂/server/year |
-| Cloud Spend | 0.6 | kg CO₂/USD/month |
-| Diesel | 2.68 | kg CO₂/liter |
-| Gasoline | 2.31 | kg CO₂/liter |
-| Office (per employee) | 1,200 | kg CO₂/year |
-| Waste | 0.5 | kg CO₂/kg |
+License
 
-## Key Design Principles
+This project is licensed under the MIT License.
 
-- **Modular Code**: Each component (data loading, preprocessing, training, etc.) is in its own module
-- **Reproducibility**: Random seeds set for all stochastic operations
-- **Documentation**: Comprehensive docstrings and comments
-- **Clean ML Pipeline**: Follows best practices for ML project structure
-- **Reusability**: Functions designed to be reusable and extensible
-- **Testing**: Comprehensive test suite for carbon footprint calculations
-
-## Dataset Information
-
-The project uses the **California Housing dataset**:
-- **Samples**: 20,640
-- **Features**: 8 numerical features
-  - MedInc: Median income in block group
-  - HouseAge: Median house age in block group
-  - AveRooms: Average number of rooms per household
-  - AveBedrms: Average number of bedrooms per household
-  - Population: Block group population
-  - AveOccup: Average number of household members
-  - Latitude: Block group latitude
-  - Longitude: Block group longitude
-- **Target**: MedHouseVal (Median house value in $100,000s)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Author
+Author
 
 Vivek M
 
-## Acknowledgments
+Acknowledgments
 
-- California Housing dataset from Scikit-learn
-- Inspired by real-world regression problems in data science
-- Emission factors based on EPA, DEFRA, and IEA standards
+California Housing dataset from Scikit-learn
+
+Inspired by real-world housing price prediction problems in data science
