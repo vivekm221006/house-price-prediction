@@ -22,6 +22,18 @@ from src.carbon_footprint import (
 )
 
 
+@pytest.fixture
+def sample_org_inputs():
+    """Sample organization inputs used across multiple tests."""
+    return {
+        "monthly_kwh": 50000, "annual_air_km": 500000,
+        "annual_car_km": 200000, "annual_train_km": 100000,
+        "num_servers": 20, "monthly_cloud_spend": 5000,
+        "monthly_diesel_liters": 5000, "monthly_gasoline_liters": 3000,
+        "num_employees": 100, "monthly_waste_kg": 2000,
+    }
+
+
 # ===============================
 # Emission Calculation Tests
 # ===============================
@@ -140,15 +152,8 @@ class TestTotalEmissions:
         assert "Office Operations" in result
         assert "Total" in result
 
-    def test_total_is_sum_of_categories(self):
-        inputs = {
-            "monthly_kwh": 50000, "annual_air_km": 500000,
-            "annual_car_km": 200000, "annual_train_km": 100000,
-            "num_servers": 20, "monthly_cloud_spend": 5000,
-            "monthly_diesel_liters": 5000, "monthly_gasoline_liters": 3000,
-            "num_employees": 100, "monthly_waste_kg": 2000,
-        }
-        result = calculate_total_emissions(inputs)
+    def test_total_is_sum_of_categories(self, sample_org_inputs):
+        result = calculate_total_emissions(sample_org_inputs)
         category_sum = sum(v for k, v in result.items() if k != "Total")
         assert result["Total"] == pytest.approx(category_sum)
 
@@ -156,7 +161,11 @@ class TestTotalEmissions:
         inputs = {"monthly_kwh": 10000}
         result = calculate_total_emissions(inputs)
         assert result["Total"] > 0
+        assert result["Electricity"] > 0
         assert result["Business Travel"] == 0.0
+        assert result["Data Centers & Cloud"] == 0.0
+        assert result["Fuel Consumption"] == 0.0
+        assert result["Office Operations"] == 0.0
 
 
 # ===============================
@@ -256,16 +265,9 @@ class TestAIModels:
         assert scaler is not None
         assert len(feature_cols) == 10
 
-    def test_classifier_predicts_valid_tier(self):
+    def test_classifier_predicts_valid_tier(self, sample_org_inputs):
         clf, scaler, feature_cols = build_emission_classifier()
-        inputs = {
-            "monthly_kwh": 50000, "annual_air_km": 500000,
-            "annual_car_km": 200000, "annual_train_km": 100000,
-            "num_servers": 20, "monthly_cloud_spend": 5000,
-            "monthly_diesel_liters": 5000, "monthly_gasoline_liters": 3000,
-            "num_employees": 100, "monthly_waste_kg": 2000,
-        }
-        tier = classify_emissions(inputs, clf, scaler, feature_cols)
+        tier = classify_emissions(sample_org_inputs, clf, scaler, feature_cols)
         assert tier in EMISSION_TIERS
 
     def test_reduction_predictor_builds(self):
@@ -273,14 +275,7 @@ class TestAIModels:
         assert reg is not None
         assert scaler is not None
 
-    def test_reduction_in_valid_range(self):
+    def test_reduction_in_valid_range(self, sample_org_inputs):
         reg, scaler = build_reduction_predictor()
-        inputs = {
-            "monthly_kwh": 50000, "annual_air_km": 500000,
-            "annual_car_km": 200000, "annual_train_km": 100000,
-            "num_servers": 20, "monthly_cloud_spend": 5000,
-            "monthly_diesel_liters": 5000, "monthly_gasoline_liters": 3000,
-            "num_employees": 100, "monthly_waste_kg": 2000,
-        }
-        reduction = predict_reduction_potential(inputs, reg, scaler)
+        reduction = predict_reduction_potential(sample_org_inputs, reg, scaler)
         assert 5.0 <= reduction <= 45.0
